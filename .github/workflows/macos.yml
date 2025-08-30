@@ -17,6 +17,11 @@ jobs:
         run: |
           brew install sdl2 freetype2 fontconfig pkg-config opus libpng libedit
       - name: Build
+        working-directory: source-engine
         run: |
           ./waf configure -8 -T debug
           ./waf build
+      - name: What we've got here?
+        working-directory: source-engine
+        run: | 
+          ls -lh .
