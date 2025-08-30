@@ -6,7 +6,7 @@ jobs:
   build-macos:
     runs-on: macos-14
     steps:
-      - name: Clone Minetest from Codeberg
+      - name: Clone source-engine
         run: |
           git clone --recursive https://github.com/nillerusr/source-engine.git source-engine
       - name: Set up Python 3.11
@@ -19,7 +19,7 @@ jobs:
       - name: Build
         working-directory: source-engine
         run: |
-          ./waf configure -8 -T debug
+          ./waf configure -T debug
           ./waf build
       - name: What we've got here?
         working-directory: source-engine
