@@ -1,0 +1,22 @@
+name: build-macos
+on:
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-14
+    steps:
+      - name: Clone Minetest from Codeberg
+        run: |
+          git clone --recursive https://github.com/nillerusr/source-engine.git source-engine
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'    
+      - name: Install deps
+        run: |
+          brew install sdl2 freetype2 fontconfig pkg-config opus libpng libedit
+      - name: Build
+        run: |
+          ./waf configure -8 -T debug
+          ./waf build
