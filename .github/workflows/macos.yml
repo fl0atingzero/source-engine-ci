@@ -19,9 +19,15 @@ jobs:
       - name: Build
         working-directory: source-engine
         run: |
-          ./waf configure -T debug
+          ./waf configure -T release
           ./waf build
       - name: What we've got here?
         working-directory: source-engine
         run: | 
           ls -lh .
+      - name: Download source-engine
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-engine
+          path: source-engine/
+          if-no-files-found: error 
