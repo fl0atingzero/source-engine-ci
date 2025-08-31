@@ -19,13 +19,12 @@ jobs:
       - name: Build
         working-directory: source-engine
         run: |
-          mkdir ../halflife2
-          ./waf configure --build-games=HL2 -T release --prefix=../halflife2
+          ./waf configure -T release --build-games=hl2 --prefix=hl2
           ./waf build
           ./waf install
       - name: Download source-engine
         uses: actions/upload-artifact@v4
         with:
           name: source-engine
-          path: halflife2/
+          path: source-engine/hl2/
           if-no-files-found: error 
